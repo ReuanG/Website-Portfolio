@@ -43,11 +43,14 @@ for code, title, description, tags in social_posts:
     is_tiktok = code.isdigit()
     platform = 'TikTok' if is_tiktok else 'Instagram'
     link = ('https://www.tiktok.com/@studiosesamee/video/' + code) if is_tiktok else ('https://www.instagram.com/reel/' + code + '/')
-    embed = ('https://www.tiktok.com/player/v1/' + code) if is_tiktok else (link + 'embed/')
-    social_cards += '<article class="social-project" id="social-' + code + '"><div class="social-embed ' + ('tiktok' if is_tiktok else 'instagram') + '"><iframe src="' + embed + '" title="' + escape(title, quote=True) + ' — ' + platform + '" loading="lazy" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><div class="video-caption"><span>' + platform + '</span><a href="' + link + '" target="_blank" rel="noopener noreferrer">Open on ' + platform + ' ↗</a></div><h2>' + escape(title) + '</h2>'
+    if is_tiktok:
+        media = '<blockquote class="tiktok-embed" cite="' + link + '" data-video-id="' + code + '" style="max-width:605px;min-width:0;width:100%;margin:0"><section><a href="' + link + '" target="_blank" rel="noopener noreferrer">Watch this video by @studiosesamee on TikTok</a></section></blockquote>'
+    else:
+        media = '<blockquote class="instagram-media" data-instgrm-permalink="' + link + '" data-instgrm-version="14" style="background:#fff;border:0;margin:0;max-width:540px;min-width:0;padding:0;width:100%"><a href="' + link + '" target="_blank" rel="noopener noreferrer">View ' + escape(title) + ' on Instagram</a></blockquote>'
+    social_cards += '<article class="social-project" id="social-' + code + '"><div class="social-embed ' + ('tiktok' if is_tiktok else 'instagram') + '">' + media + '</div><div class="video-caption"><span>' + platform + '</span><a href="' + link + '" target="_blank" rel="noopener noreferrer">Open on ' + platform + ' ↗</a></div><h2>' + escape(title) + '</h2>'
     if tags:
         social_cards += '<div class="project-meta">' + ''.join('<span class="pill">' + escape(t) + '</span>' for t in tags) + '</div>'
     if description:
         social_cards += '<p class="project-description">' + escape(description) + '</p>'
     social_cards += '</article>'
-page('social','Social Media','''<section class="page-heading"><span class="eyebrow">03 / Social content</span><h1>Social Media<span style="color:var(--accent)">.</span></h1><p>Ideas, visual effects and edits made for the feed. From music-led concepts to event coverage and livestream clips.</p><p class="note">If a video does not load here, use its Instagram or TikTok link to watch it.</p></section><section class="social-gallery" aria-label="Social media projects">'''+social_cards+'''</section>''')
+page('social','Social Media','''<section class="page-heading"><span class="eyebrow">03 / Social content</span><h1>Social Media<span style="color:var(--accent)">.</span></h1><p>Ideas, visual effects and edits made for the feed. From music-led concepts to event coverage and livestream clips.</p><p class="note">If a video does not load here, use its Instagram or TikTok link to watch it.</p></section><section class="social-gallery" aria-label="Social media projects">'''+social_cards+'''</section><script async src="https://www.instagram.com/embed.js"></script><script async src="https://www.tiktok.com/embed.js"></script>''')
