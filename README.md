@@ -2,7 +2,7 @@
 
 Source and static site backup for Euan Garcia's CG, video editing and social media portfolio.
 
-Includes Overview, My Projects, Client work, and Social Media with all ten social video integrations.
+Includes Overview, My Projects, Client work, and Social Media.
 
 ## Preview locally
 
