@@ -44,7 +44,7 @@ for code, title, description, tags in social_posts:
     platform = 'TikTok' if is_tiktok else 'Instagram'
     link = ('https://www.tiktok.com/@studiosesamee/video/' + code) if is_tiktok else ('https://www.instagram.com/reel/' + code + '/')
     if is_tiktok:
-        media = '<blockquote class="tiktok-embed" cite="' + link + '" data-video-id="' + code + '" style="max-width:605px;min-width:0;width:100%;margin:0"><section><a href="' + link + '" target="_blank" rel="noopener noreferrer">Watch this video by @studiosesamee on TikTok</a></section></blockquote>'
+        media = '<blockquote class="tiktok-embed" cite="' + link + '" data-video-id="' + code + '" style="max-width:540px;min-width:0;width:100%;margin:0"><section><a href="' + link + '" target="_blank" rel="noopener noreferrer">Watch this video by @studiosesamee on TikTok</a></section></blockquote>'
     else:
         media = '<blockquote class="instagram-media" data-instgrm-permalink="' + link + '" data-instgrm-version="14" style="background:#fff;border:0;margin:0;max-width:540px;min-width:0;padding:0;width:100%"><a href="' + link + '" target="_blank" rel="noopener noreferrer">View ' + escape(title) + ' on Instagram</a></blockquote>'
     social_cards += '<article class="social-project" id="social-' + code + '"><div class="social-embed ' + ('tiktok' if is_tiktok else 'instagram') + '">' + media + '</div><div class="video-caption"><span>' + platform + '</span><a href="' + link + '" target="_blank" rel="noopener noreferrer">Open on ' + platform + ' ↗</a></div><h2>' + escape(title) + '</h2>'
