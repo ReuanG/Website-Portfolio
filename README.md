@@ -4,6 +4,8 @@ CG, video editing and social media portfolio, including Overview, My Projects, C
 
 Website: https://reuang.github.io/Website-Portfolio/
 
+** *DISCLAIMER* This website was made with AI specifically ChatGPT. That being said I do not endorse the use of AI as a way of replacing real humans and their creativity this was mainly to get over my inability to create a website portfolio since tools like Wix and Squarespace lock their services behind a paywall and make it excruciatingly difficult to use. On a lighter note the content inside said website is NOT AI GENERATED, all the work published was projects made by me or worked on with clients I am still in the process of making this website so expect some bugs and a lot of slop code put together, but I will do my best to try and clean it up and make it work not only with a visual experience but on the back-end too! **
+
 ## GitHub Pages
 
 The site is published from **main / (root)**. The root `index.html`, page folders, `styles.css` and `projects.js` are generated publishing files. `.nojekyll` serves them as plain static files.
