@@ -33,3 +33,39 @@ document.querySelectorAll('input[name="chaos-version"]').forEach(input => {
     document.getElementById('chaos-version-note').textContent = version.note;
   });
 });
+
+// Project links from the overview can select the intended CHAOS cut.
+const requestedChaosVersion = new URLSearchParams(window.location.search).get('chaos');
+if (requestedChaosVersion === 'official' || requestedChaosVersion === 'original') {
+  const choice = document.querySelector(`input[name="chaos-version"][value="${requestedChaosVersion}"]`);
+  if (choice) {
+    choice.checked = true;
+    choice.dispatchEvent(new Event('change'));
+  }
+}
+
+const gallery = document.getElementById('gallery-track');
+if (gallery) {
+  const cards = Array.from(gallery.querySelectorAll('.gallery-card'));
+  const previous = document.getElementById('gallery-prev');
+  const next = document.getElementById('gallery-next');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const updateControls = () => {
+    previous.disabled = gallery.scrollLeft <= 2;
+    next.disabled = gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth - 2;
+  };
+  const move = direction => {
+    const step = cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : gallery.clientWidth;
+    gallery.scrollBy({left: direction * step, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
+  };
+  previous.addEventListener('click', () => move(-1));
+  next.addEventListener('click', () => move(1));
+  gallery.addEventListener('keydown', event => {
+    if (event.target !== gallery || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    move(event.key === 'ArrowRight' ? 1 : -1);
+  });
+  gallery.addEventListener('scroll', updateControls, {passive: true});
+  new ResizeObserver(updateControls).observe(gallery);
+  updateControls();
+}
